@@ -24,6 +24,9 @@ class Card:
         rank = _RANKS[self.rank] if self.rank in _RANKS else self.rank
         return f"{rank} of {_SUITS[self.suit]}"
 
+    def __hash__(self):
+        return hash((self.rank, self.suit))
+
 
 # The order of these entries is important; when getting a list of keys
 # from a dict, Python defaults to using insertion order. Change the order

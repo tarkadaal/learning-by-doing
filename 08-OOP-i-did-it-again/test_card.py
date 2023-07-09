@@ -125,3 +125,17 @@ def test_card_greater_than_invalid_type(other):
 )
 def test_card_string_method(card, expected):
     assert str(card) == expected
+
+
+@pytest.mark.parametrize(
+    "other,expected",
+    [
+        (Card("5", "C"), True),
+        (Card("5", "H"), False),
+        (Card("6", "C"), False),
+        ("5C", False),
+    ],
+)
+def test_card_hashing(other, expected):
+    result = hash(Card("5", "C")) == hash(other)
+    assert result == expected
